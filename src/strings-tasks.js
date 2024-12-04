@@ -488,12 +488,14 @@ function extractEmails(str) {
  *
  */
 function encodeToRot13(str) {
-  return str.replace(/[A-Za-z]/g, function (char) {
+  function transformChar(char) {
     const base = char <= 'Z' ? 65 : 97;
     const charCode = char.charCodeAt(0) - base;
     const newCharCode = (charCode + 13) % 26;
     return String.fromCharCode(newCharCode + base);
-  });
+  }
+
+  return str.replace(/[A-Za-z]/g, transformChar);
 }
 
 /**
